@@ -9,7 +9,7 @@ app.use(express.json())
 
 app.use(cors());
 
-app.get('/cafes', (req, res, next) => {
+app.get('/cafes', (req, res) => {
 
   // no query 
   if (Object.keys(req.query).length === 0) {
@@ -37,14 +37,12 @@ app.get('/cafes', (req, res, next) => {
 
     // not supported query will simple return error 
   }
-  next()
+
 })
 
-app.get('/employees', (req, res, next) => {
+app.get('/cafes/employees', (req, res, next) => {
 
   res.send({ "employees": [] })
-
-  console.log('GET', req.url, ', query: ', req.query)
   next()
 })
 
@@ -54,8 +52,7 @@ app.post('/cafe', (req, res) => CreateCafe(req, res))
 //   console.log('POST', req.url, ', body: ', req.body)
 // })
 
-app.post('/employee', (req, res) => {
-
+app.post('/cafe/employee', (req, res) => {
 
   console.log('POST', req.url, ', body: ', req.body)
 })

@@ -20,6 +20,6 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.cafes = require("./cafe.model.js")(sequelize, Sequelize);
-db.employees = require("./employee.model.js")(sequelize, Sequelize);
+// db.employees = require("./employee.model.js")(sequelize, Sequelize);
 
 module.exports = db;

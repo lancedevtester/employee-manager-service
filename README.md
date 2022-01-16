@@ -32,7 +32,7 @@ Make sure docker engine is installed in your work environment.
   docker build
 ```
 
-Server is starting at http://127.0.0.1:8081/
+Server is starting at http://127.0.0.1:8080/
 
 ![]()
 
@@ -40,58 +40,57 @@ Server is starting at http://127.0.0.1:8081/
 
 ## Use the API
 
-Use `curl` or `postman` to make request to endpoints below with body as desbribed:
+Use `curl` or `postman` to make request to endpoints below:
 
-  1. `GET` - http://127.0.0.1:8081/cafes?location=[LOCATION_STRING]
-    <br />- return only `cafes` that is within the area given `LOCATION_STRING`
-    <br />- return `empty array` given invalid string
+1. `GET` - http://127.0.0.1:8080/cafes?location=[LOCATION_STRING]
+   <br />- return only `cafes` that is within the area given `LOCATION_STRING`
+   <br />- return `empty array` given invalid string
 
-      ```json
-      [
-        // ...
-        {
-          "name": "John Cena",
-          "description": "",
-          "employees": 30,
-          "logo": "some_url",
-          "location": "some_address",
-          "id": 3102
-        },
-        // ...
-      ]
+   ```json
+   [
+     // ...
+     {
+       "name": "John Cena",
+       "description": "",
+       "employees": 30,
+       "logo": "some_url",
+       "location": "some_address",
+       "id": 3102
+     }
+     // ...
+   ]
+   ```
 
-      ```
-    
+2. `GET` - http://127.0.0.1:8080/cafes/employees
+   <br />- return list of employee, sorted by `working_day` in `desc` order
 
-  2. `GET` - http://127.0.0.1:8081/cafes/employees
-    <br />- return list of employee, sorted by `working_day` in `desc` order
+   ```json
+   [
+     // ...
+     {
+       "name": "John Cena",
+       "days_worked": 42,
+       "cafe": "Starbucks"
+     }
+     // ...
+   ]
+   ```
 
-      ```json
-      [
-        // ...
-        {
-          "name": "John Cena",
-          "days_worked": 42,
-          "cafe": "Starbucks"
-        },
-        // ...
-      ]
+Use `curl` or `postman` to make request to endpoints below with `body` as desbribed to create new object:
 
-      ```
+3. `POST` - http://127.0.0.1:8080/cafe
 
-  3. `POST` - http://127.0.0.1:8081/cafe
+   ```json
+   {
+     "cafe": "Starbucks"
+   }
+   ```
 
-      ```json
-      {
-        "cafe": "Starbucks"
-      }
-      ```
+4. `POST` - http://127.0.0.1:8080/cafe/employee
 
-  4. `POST` - http://127.0.0.1:8081/cafe/employee
-
-      ```json
-      {
-        "name": "John Cena",
-        "cafe": "Starbucks"
-      }
-      ```
+   ```json
+   {
+     "name": "John Cena",
+     "cafe": "Starbucks"
+   }
+   ```
