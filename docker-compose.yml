@@ -24,8 +24,10 @@ services:
     env_file: ./.env
     ports:
       - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+
+    # env variables
     environment:
-      - DB_HOST=mysqldb
+      - DB_HOST=mysql
       - DB_USER=$MYSQLDB_USER
       - DB_PASSWORD=$MYSQLDB_ROOT_PASSWORD
       - DB_NAME=$MYSQLDB_DATABASE

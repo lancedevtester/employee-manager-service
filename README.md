@@ -81,9 +81,12 @@ Use `curl` or `postman` to make request to endpoints below with `body` as desbri
 3. `POST` - http://127.0.0.1:8080/cafe
 
    ```json
-   {
-     "cafe": "Starbucks"
-   }
+  {
+      "name": "Ekrye",
+      "location": "Singapore",
+      "description": "",
+      "employees": 24
+  }
    ```
 
 4. `POST` - http://127.0.0.1:8080/cafe/employee

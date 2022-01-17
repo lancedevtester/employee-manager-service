@@ -1,22 +1,27 @@
 module.exports = (sequelize, Sequelize) => {
-  const Cafe = sequelize.define("cafe", {
+  const Cafe = sequelize.define("cafes", {
     name: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
+      allowNull: false
     },
     description: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
+      allowNull: false
     },
-    employee: {
-      type: Sequelize.INTEGER
+    employees: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
     },
     logo: {
       type: Sequelize.STRING
     },
     location: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
+      allowNull: false
     },
-    id: {
+    uuid: {
       type: Sequelize.UUID,
+      defaultValue: Sequelize.UUIDV1,
       primaryKey: true
     },
   });

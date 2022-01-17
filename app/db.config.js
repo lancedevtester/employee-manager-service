@@ -10,7 +10,10 @@ module.exports = {
   USER: 'developer',
   PASSWORD: '12345',
   DB: 'test_cafe_db',
-  port: 3306,
+
+  // port: 3306, // for native MySQL
+
+  port: 33060, // for docker MySQL 5.7
 
   dialect: "mysql",
   pool: {

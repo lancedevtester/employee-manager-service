@@ -2,7 +2,9 @@ const dbConfig = require("../db.config.js");
 
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
+
   host: dbConfig.HOST,
+  host: dbConfig.port,
   dialect: dbConfig.dialect,
   operatorsAliases: false,
 
@@ -20,6 +22,6 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.cafes = require("./cafe.model.js")(sequelize, Sequelize);
-// db.employees = require("./employee.model.js")(sequelize, Sequelize);
+db.employees = require("./employee.model.js")(sequelize, Sequelize);
 
 module.exports = db;

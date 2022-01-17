@@ -1,7 +1,8 @@
 const express = require('express')
 const cors = require("cors");
+const errorHandler = require('./middleware/error-handler');
 
-const { CreateCafe } = require('./controllers')
+const { CreateCafe, CreateEmployee, FindCafeByLocation, FindAllEmployees } = require('./controllers')
 const app = express()
 
 app.use(express.urlencoded({ extended: true }))
@@ -9,53 +10,28 @@ app.use(express.json())
 
 app.use(cors());
 
-app.get('/cafes', (req, res) => {
+app.get('/cafes', (req, res, next) => {
 
-  // no query 
+  // No query, return all
   if (Object.keys(req.query).length === 0) {
-
-    res.send({ "cafes": [] })
-    console.log('No query, return all')
+    next()
   } else {
-
-    // query is 'location' 
-    if (req.query.location) {
-
-      // location is valid, check from
-      if (true)
-        res.send({
-          "name": "Starbuck",
-          "description": "",
-          "employees": 10,
-          "logo": "",
-          "location": "",
-          "id": 132
-        })
-
-      console.log('GET', req.url, ', query: ', req.query)
-    }
-
-    // not supported query will simple return error 
+    FindCafeByLocation(req, res)
   }
-
+  // not supported query will simple return error 
 })
 
-app.get('/cafes/employees', (req, res, next) => {
-
-  res.send({ "employees": [] })
-  next()
-})
+app.get('/cafes/employees', (req, res) => FindAllEmployees(req, res))
 
 app.post('/cafe', (req, res) => CreateCafe(req, res))
-// app.post('/cafe', (req, res) => {
 
-//   console.log('POST', req.url, ', body: ', req.body)
-// })
+app.post('/cafe/employee', (req, res) => CreateEmployee(req, res))
 
-app.post('/cafe/employee', (req, res) => {
+// global error handler
+app.use(errorHandler);
 
-  console.log('POST', req.url, ', body: ', req.body)
-})
-
-// start the server
-app.listen(8080, '127.0.0.1', console.log("Cafes Employee Manager running.. "))
+// start server
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Cafes Employee Manager Server is running on port ${PORT}.`);
+});
