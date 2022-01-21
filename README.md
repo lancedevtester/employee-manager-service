@@ -15,6 +15,10 @@
 
 - Make sure `MySQL Server` and `NodeJS` is installed.
 
+Create `test_cafe_db` database on local MySQL server, and import `test_cafe_db.sql` in project root to overwrite it.
+
+Then `cd` to project root, use command below
+
 ```sh
   npm install
   npm start
@@ -25,6 +29,8 @@ Server is starting at http://127.0.0.1:8080/
 ![]()
 
 ### Run as Composed Docker Container
+
+[Service oot fully working]
 
 Make sure docker engine is installed in your work environment.
 
